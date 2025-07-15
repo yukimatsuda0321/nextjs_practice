@@ -21,7 +21,7 @@ export default function LoginForm() {
   )
 
   return(
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-full max-w-md mx-auto mt-24">
       <CardHeader>
         <CardTitle>ログイン</CardTitle>
       </CardHeader>
