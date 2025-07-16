@@ -50,27 +50,71 @@ async function main() {
             topImage: dummyImages[1],
             published: true,
             createdAt: getRandomDateInPast(30),
-          },
+          }
+        ],
+      },
+    },
+  });
+
+  const user2 = await prisma.user.create({
+    data: {
+      email: 'maruko@gmail.com',
+      name: '丸子',
+      iconImage: dummyImages[0],
+      password: hashedPassword,
+      posts: {
+        create: [
           {
-            content: 'Pelvic stability remains a challenge during single-leg stance; core stabilization exercises prescribed.',
+            content: 'Patient demonstrates improved gait symmetry and increased stride length compared to the previous session.',
             topImage: dummyImages[1],
             published: true,
             createdAt: getRandomDateInPast(30),
           },
           {
-            content: 'Patient shows adequate dorsiflexion during swing but lacks terminal knee extension in stance.',
+            content: 'Mild right knee valgus noted during stance phase; recommend targeted strengthening for hip abductors.',
             topImage: dummyImages[1],
             published: true,
             createdAt: getRandomDateInPast(30),
           },
           {
-            content: 'Weight shifting to the left side improved; however, mild trunk lean persists with fatigue.',
+            content: 'Patient continues to exhibit foot drop on the left side; AFO use advised for community ambulation.',
             topImage: dummyImages[1],
             published: true,
             createdAt: getRandomDateInPast(30),
           },
           {
-            content: 'Balance during turning improved significantly; recommend progression to outdoor uneven surfaces.',
+            content: 'Increased cadence and reduced toe-off delay observed with verbal cues and tactile facilitation.',
+            topImage: dummyImages[1],
+            published: true,
+            createdAt: getRandomDateInPast(30),
+          }
+        ],
+      },
+    },
+  });
+
+  const user3 = await prisma.user.create({
+    data: {
+      email: 'matuda2@gmail.com',
+      name: 'まつだ',
+      iconImage: dummyImages[0],
+      password: hashedPassword,
+      posts: {
+        create: [
+          {
+            content: 'Patient demonstrates improved gait symmetry and increased stride length compared to the previous session.',
+            topImage: dummyImages[1],
+            published: true,
+            createdAt: getRandomDateInPast(30),
+          },
+          {
+            content: 'Mild right knee valgus noted during stance phase; recommend targeted strengthening for hip abductors.',
+            topImage: dummyImages[1],
+            published: true,
+            createdAt: getRandomDateInPast(30),
+          },
+          {
+            content: 'Patient continues to exhibit foot drop on the left side; AFO use advised for community ambulation.',
             topImage: dummyImages[1],
             published: true,
             createdAt: getRandomDateInPast(30),
@@ -80,7 +124,42 @@ async function main() {
     },
   });
 
-  console.log({ user });
+  const user4 = await prisma.user.create({
+    data: {
+      email: 'maruko2@gmail.com',
+      name: 'まるこ',
+      iconImage: dummyImages[0],
+      password: hashedPassword,
+      posts: {
+        create: [
+          {
+            content: 'Patient demonstrates improved gait symmetry and increased stride length compared to the previous session.',
+            topImage: dummyImages[1],
+            published: true,
+            createdAt: getRandomDateInPast(30),
+          },
+          {
+            content: 'Mild right knee valgus noted during stance phase; recommend targeted strengthening for hip abductors.',
+            topImage: dummyImages[1],
+            published: true,
+            createdAt: getRandomDateInPast(30),
+          },
+          {
+            content: 'Patient continues to exhibit foot drop on the left side; AFO use advised for community ambulation.',
+            topImage: dummyImages[1],
+            published: true,
+            createdAt: getRandomDateInPast(30),
+          },
+          {
+            content: 'Patient continues to exhibit foot drop on the left side; AFO use advised for community ambulation.',
+            topImage: dummyImages[1],
+            published: true,
+            createdAt: getRandomDateInPast(30),
+          },
+        ],
+      },
+    },
+  });
 }
 
 main()
