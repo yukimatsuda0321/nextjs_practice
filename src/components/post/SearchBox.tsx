@@ -20,7 +20,7 @@ export default function SearchBox(){
 
     useEffect(() => {
         if(debauncedSearch.trim()){
-            router.push("/?search=${debauncedSearch.trim()}")
+            router.push(`/?search=${debauncedSearch.trim()}`)
         }else{
             router.push("/")
         }

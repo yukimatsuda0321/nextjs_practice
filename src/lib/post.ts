@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 
-export async function getPosts(){
+export async function getPosts(order: "asc" | "desc" = "asc"){
     return await prisma.post.findMany({
         where:{published:true},
         include:{
@@ -11,7 +11,7 @@ export async function getPosts(){
             }
         },
         orderBy:{
-            createdAt:"asc"
+            createdAt:order
         }
     })
 }

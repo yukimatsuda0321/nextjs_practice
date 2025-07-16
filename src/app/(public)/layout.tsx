@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PublicHeader from "@/components/layouts/PublicHeader";
+import RecordHeader from "@/components/layouts/RecordHeader";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,6 +15,7 @@ export default function PublicLayout({
   return (
     <>
     <PublicHeader />
+    <RecordHeader />
     {children}
     </>
   );

@@ -12,14 +12,14 @@ import SearchBox from "../post/SearchBox"
 
 export default function PublicHeader() {
     return(
-        <div>
+        <>
         <header className="border-b shadow-sm">
             <div className="container mx-auto px-4 py-4 flex items-center justify-between">
                 <NavigationMenu>
                     <NavigationMenuList>
                         <NavigationMenuItem>
                             <Link href="/" passHref>
-                            <div className="font-bold text-xl">歩行評価アプリ（練習）</div>
+                            <div className="font-bold text-2xl">歩行評価アプリ</div>
                             </Link>
                         </NavigationMenuItem>
                     </NavigationMenuList>
@@ -36,6 +36,6 @@ export default function PublicHeader() {
                 </div>
             </div>
         </header>
-        </div>
+        </>
     )
 }
