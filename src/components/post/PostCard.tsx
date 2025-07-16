@@ -23,7 +23,7 @@ export default function PostCard({ post }: PostCardProps) {
                 </div>
             )}
             <CardHeader>
-                <CardTitle><time>{format(new Date(post.createdAt), "yyyy/M/d HH:mm", { locale: ja })}</time></CardTitle>
+                <CardTitle><time>{format(new Date(post.createdAt), "yyyy/M/d HH:mm:ss", { locale: ja })}</time></CardTitle>
             </CardHeader>
             <CardContent>
                 <p className="font-bold">Dr. {post.author.name}</p>

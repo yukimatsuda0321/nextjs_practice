@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import {
     NavigationMenu,
@@ -19,20 +20,15 @@ export default function PublicHeader() {
                         <NavigationMenuList>
                             <NavigationMenuItem>
                                 <Link href="/" passHref>
-                                    <div className="font-bold text-2xl">歩行評価アプリ</div>
+                                    <div className="font-bold text-2xl">歩行評価システム</div>
                                 </Link>
                             </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>
 
-                    <div className="flex items-center gap-4">
-                        <SearchBox />
-                        <Button variant="outline" asChild>
-                            <Link href="/login">ログイン</Link>
-                        </Button>
-                        <Button asChild>
-                            <Link href="/register">登録</Link>
-                        </Button>
+                    <div className="flex items-center gap-4 items-strech">
+                        <AccountCircleIcon className="h-full w-auto" />
+                        <div className="font-bold text-xl">Dr. 松田</div>
                     </div>
                 </div>
             </header>
