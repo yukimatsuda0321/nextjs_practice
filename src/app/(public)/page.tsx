@@ -1,48 +1,43 @@
-import {compareDatePosts, getPosts, searchPosts} from "@/lib/post"
+import { compareDatePosts, getPosts, searchPosts } from "@/lib/post"
 import PostCard from "@/components/post/PostCard"
 import { Post } from "@/types/post"
 
 type SearchParams = {
-    search? : string
+    search?: string
     order?: "asc" | "desc"
     date?: Date
 }
 
-export default async function PostsPage({searchParams}:{searchParams: Promise<SearchParams>}) {
-    const resolvedSearchParams = await searchParams
-    const query = resolvedSearchParams.search ?? ""
-    const comparedDate = resolvedSearchParams.date ? new Date(resolvedSearchParams.date) : null
-    const order = resolvedSearchParams.order === "desc" ? "desc" : "asc"
+type Props = {
+    searchParams: Promise<SearchParams>
+}
 
-    const posts = query ? await searchPosts(query) as Post[] : await getPosts(order) as Post[]
+function renderPostGrid(posts: Post[]) {
+    return (
+        <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {posts.map((post) => (
+            <PostCard key={post.id} post={post} />
+            ))}
+        </div>
+        </div>
+    )
+}
 
-    if(comparedDate){
-        console.log("引数に渡す日時", comparedDate)
-        const posts = await compareDatePosts(comparedDate) as Post[]
-        return(
-            <>
-            <div className="container mx-auto px-4 py-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {posts.map((post) => (
-                        <PostCard key={post.id} post={post}/>
-                    ))}
+export default async function PostsPage({ searchParams }: Props) {
+    const resolvedParams = await searchParams
+    const searchQuery = resolvedParams.search ?? ""
+    const comparedDate = resolvedParams.date ? new Date(resolvedParams.date) : null
+    const order: "asc" | "desc" = resolvedParams.order === "desc" ? "desc" : "asc"
 
-                </div>
-            </div>
-            </>
-        )
+    if (comparedDate) {
+        const dateFilteredPosts = await compareDatePosts(comparedDate) as Post[]
+        return renderPostGrid(dateFilteredPosts)
     }
 
-    return(
-        <>
-        <div className="container mx-auto px-4 py-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {posts.map((post) => (
-                    <PostCard key={post.id} post={post}/>
-                ))}
+    const posts: Post[] = searchQuery
+        ? await searchPosts(searchQuery)
+        : await getPosts(order)
 
-            </div>
-        </div>
-        </>
-    )
+    return renderPostGrid(posts)
 }
