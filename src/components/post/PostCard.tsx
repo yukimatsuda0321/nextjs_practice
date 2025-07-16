@@ -3,22 +3,23 @@ import {ja} from "date-fns/locale"
 import Image from "next/image"
 
 import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
+    Card,
+    CardAction,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
 } from "@/components/ui/card"
 import { PostCardProps } from "@/types/post"
 
 export default function PostCard({post} : PostCardProps){
+    console.log(post.createdAt)
     return(
         <Card>
         {post.topImage && (
             <div className="relative w-full h-48">
-                <Image src={post.topImage} alt="画像が見つかりません" fill sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" className="rounded-t-md object-cover" priority />
+                <img src="image.png" alt="画像が見つかりません" width="250px" className="rounded-t-md object-cover" />
             </div>
         )}
         <CardHeader>

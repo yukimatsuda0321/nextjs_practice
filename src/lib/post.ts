@@ -16,6 +16,26 @@ export async function getPosts(order: "asc" | "desc" = "asc"){
     })
 }
 
+export async function compareDatePosts(date : Date){
+    return await prisma.post.findMany({
+        where: {
+            createdAt: {
+            gte: date
+        }
+    },
+        include:{
+            author:{
+                select:{
+                    name:true
+                }
+            }
+        },
+        orderBy:{
+            createdAt:"desc"
+        }
+    })
+}
+
 export async function searchPosts(search : string){
     const decodedSearch = decodeURIComponent(search)   
     const normalizedSearch = decodedSearch.replace(/[\s　]+/g, ' ').trim() 
