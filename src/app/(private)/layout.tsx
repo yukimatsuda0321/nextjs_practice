@@ -4,11 +4,11 @@ export default async function PrivateLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>){
-    return(
-        <div>
-            <PrivateHeader />
-            
-        </div>
-    )
+}>) {
+  return (
+    <div>
+      <PrivateHeader />
+
+    </div>
+  )
 }

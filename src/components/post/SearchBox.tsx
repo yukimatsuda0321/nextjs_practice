@@ -5,9 +5,9 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { de } from "date-fns/locale";
 
-export default function SearchBox(){
+export default function SearchBox() {
     const [search, setSearch] = useState("")
-    const [ debauncedSearch, setDebauncedSearch ] = useState("")
+    const [debauncedSearch, setDebauncedSearch] = useState("")
     const router = useRouter()
 
     useEffect(() => {
@@ -16,19 +16,19 @@ export default function SearchBox(){
         }, 500)
 
         return () => clearTimeout(timer)
-    },[search])
+    }, [search])
 
     useEffect(() => {
-        if(debauncedSearch.trim()){
+        if (debauncedSearch.trim()) {
             router.push(`/?search=${debauncedSearch.trim()}`)
-        }else{
+        } else {
             router.push("/")
         }
-    },[debauncedSearch, router])
+    }, [debauncedSearch, router])
 
-    return(
+    return (
         <>
-        <Input placeholder="歩行記録を検索" className="w-[200px] lg:w-[300px]" value={search} onChange={(e) => setSearch(e.target.value)}/>
+            <Input placeholder="歩行記録を検索" className="w-[200px] lg:w-[300px]" value={search} onChange={(e) => setSearch(e.target.value)} />
         </>
     )
 }

@@ -1,12 +1,12 @@
 export type Post = {
-    id:string
-    content:string
-    topImage:string | null
+    id: string
+    content: string
+    topImage: string | null
     createdAt: Date
-    author:{
-        name:string
+    author: {
+        name: string
     }
 
 }
 
-export type PostCardProps = {post : Post}
+export type PostCardProps = { post: Post }

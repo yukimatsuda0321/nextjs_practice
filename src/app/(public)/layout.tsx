@@ -14,9 +14,9 @@ export default function PublicLayout({
 }>) {
   return (
     <>
-    <PublicHeader />
-    <RecordHeader />
-    {children}
+      <PublicHeader />
+      <RecordHeader />
+      {children}
     </>
   );
 }

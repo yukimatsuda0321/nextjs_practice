@@ -21,7 +21,7 @@ export default function RecordHeader() {
     <header className="w-full border-b shadow-sm bg-white">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="font-bold text-xl">記録一覧</div>
-        <div className="flex gap-3">
+        <div className="flex gap-4">
           <DatePicker />
           <Button
             variant={currentOrder === "asc" ? "default" : "outline"}
