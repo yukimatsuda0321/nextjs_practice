@@ -16,14 +16,16 @@ import { PostCardProps } from "@/types/post"
 export default function PostCard({ post }: PostCardProps) {
     console.log(post.createdAt)
     return (
-        <Card>
+        <Card className="shadow-lg rounded-lg transition-transform hover:scale-[1.01] hover:shadow-xl duration-200">
             {post.topImage && (
                 <div className="relative w-full h-48">
                     <img src="image.png" alt="画像が見つかりません" width="250px" className="rounded-t-md object-cover" />
                 </div>
             )}
             <CardHeader>
-                <CardTitle><time>{format(new Date(post.createdAt), "yyyy/M/d HH:mm:ss", { locale: ja })}</time></CardTitle>
+                <CardTitle>
+                    <time>{format(new Date(post.createdAt), "yyyy/M/d HH:mm:ss", { locale: ja })}</time>
+                </CardTitle>
             </CardHeader>
             <CardContent>
                 <p className="font-bold">Dr. {post.author.name}</p>
@@ -32,5 +34,6 @@ export default function PostCard({ post }: PostCardProps) {
                 </p>
             </CardContent>
         </Card>
+
     )
 }

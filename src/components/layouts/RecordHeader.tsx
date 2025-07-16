@@ -4,11 +4,20 @@ import { useSearchParams, useRouter, usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import DatePicker from "../post/DatePicker"
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { useState } from "react"
+
 export default function RecordHeader() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
-
+  const [selectedSort, setSelectedSort] = useState("");
   const currentOrder = searchParams.get("order") === "desc" ? "desc" : "asc"
 
   const updateOrder = (order: "asc" | "desc") => {
@@ -17,12 +26,16 @@ export default function RecordHeader() {
     router.push(`${pathname}?${params.toString()}`)
   }
 
+  const handleSortChange = (value: string) => {
+    setSelectedSort(value);
+    console.log("選択された値:", value);
+  };
+
   return (
     <header className="w-full border-b shadow-sm bg-white">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="font-bold text-xl">記録一覧</div>
-        <div className="flex gap-4">
-          <DatePicker />
+        <div className="flex">
           <Button
             variant={currentOrder === "asc" ? "default" : "outline"}
             onClick={() => updateOrder("asc")}
@@ -35,6 +48,15 @@ export default function RecordHeader() {
           >
             降順
           </Button>
+          <Select onValueChange={handleSortChange}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="並び替え" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="charger">担当者順</SelectItem>
+              <SelectItem value="create-date">撮影日順</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
     </header>
