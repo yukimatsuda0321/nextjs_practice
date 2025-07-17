@@ -16,6 +16,7 @@ import React, { useRef, useState } from "react";
 import RadarChartMUI from "@/components/CsvChart/RadarChartMUI";
 import CsvChartMUI1 from "@/components/CsvChart/CsvChartMUI1";
 import RaderChartRechart from "@/components/CsvChart/RadarChartRechart";
+import ReactPlayerVideo from "@/components/VideoPlayer/ReactPlayerVideo";
 
 const csvFiles = Array.from({ length: 20 }, (_, i) => ({
   file: "sample1.csv",
@@ -61,13 +62,15 @@ export default function Home() {
 
       <Stack direction={"row"} width="100%" height="100%">
         <Stack
-          width={"55%"}
+          width={"60%"}
           alignItems={"center"}
           sx={{
             backgroundColor: "#c2ed82",
           }}
         >
-          <VideoPlayer ref={videoRef} />
+          <Box width="100%" height="auto">
+            <ReactPlayerVideo />
+          </Box>
         </Stack>
 
         <Stack
@@ -84,7 +87,6 @@ export default function Home() {
               <Typography variant="h6" gutterBottom>
                 レーダーチャート
               </Typography>
-              {/* <RadarChartMUI file="RadarChart.csv" title="チャート情報" /> */}
               <RaderChartRechart
                 title="Student Comparison"
                 csvPath={"RadarChart/RadarChart.csv"}

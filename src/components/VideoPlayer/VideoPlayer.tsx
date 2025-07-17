@@ -1,5 +1,3 @@
-"use client";
-
 import { Box, Button, Slider, Stack } from "@mui/material";
 import { useRef, useState, useEffect } from "react";
 
