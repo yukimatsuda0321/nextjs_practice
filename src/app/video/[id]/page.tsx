@@ -12,19 +12,47 @@ import {
 import VideoPlayer from "@/components/VideoPlayer/VideoPlayer";
 import CsvChart from "@/components/CsvChart/CsvChart";
 import CsvChartMUI from "@/components/CsvChart/CsvChartMUI";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import RadarChartMUI from "@/components/CsvChart/RadarChartMUI";
 import CsvChartMUI1 from "@/components/CsvChart/CsvChartMUI1";
 import RaderChartRechart from "@/components/CsvChart/RadarChartRechart";
+import { getPostById } from "@/lib/post";
+import { notFound } from "next/navigation";
+import { format } from "date-fns"
+import { ja } from "date-fns/locale"
+import { Post } from "@/types/post";
 
 const csvFiles = Array.from({ length: 20 }, (_, i) => ({
   file: "sample1.csv",
   title: `センサー${i + 1}`,
 }));
 
-export default function Home() {
+export default function Home({ params }: { params: Promise<{ id: string }> }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [checked, setChecked] = React.useState(true);
+
+  const [post, setPost] = useState<Post | null>(null)
+
+  const resolvedParams = React.use(params)
+  const id = resolvedParams.id
+
+  useEffect(() => {
+    if (!id) return
+    const fetchPost = async () => {
+      const res = await fetch(`/api/post/${id}`)
+      if (res.ok) {
+        const data = await res.json()
+        setPost(data)
+      } else {
+        console.error('投稿が見つかりません')
+      }
+    }
+    fetchPost()
+  }, [id])
+
+  if (!post) {
+    return <p>読み込み中...</p>
+  }
 
   const handleSeek = (time: number) => {
     if (videoRef.current) {
@@ -46,8 +74,8 @@ export default function Home() {
       >
         <Typography variant="h3">解析結果</Typography>
         <Stack>
-          <Typography variant="h6">0000001　江寝込む田老</Typography>
-          <Typography variant="h6">(2024/12/31 13:00:00)</Typography>
+          <Typography variant="h6">{post.author.name}</Typography>
+          <Typography variant="h6">{format(new Date(post.createdAt), "yyyy/M/d HH:mm:ss", { locale: ja })}</Typography>
         </Stack>
 
         <Box sx={{ marginRight: "auto" }}>

@@ -18,7 +18,7 @@ export default function PostCard({ post }: PostCardProps) {
     console.log(post.createdAt)
     return (
         <Card className="shadow-lg rounded-lg transition-transform hover:scale-[1.01] hover:shadow-xl duration-200">
-            <Link href="video">
+            <Link href={`/video/${post.id}`}>
                 {post.topImage && (
                     <div className="relative w-full h-48">
                         <img src="image.png" alt="画像が見つかりません" width="225px" className="ml-12 rounded-t-md object-cover" />
