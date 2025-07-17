@@ -55,7 +55,7 @@ const RadarChartMUI = ({ file, title }: Props) => {
       {seriesData.length > 0 && metrics.length > 0 ? (
         <RadarChart
           height={350}
-          series={[{ label: title, data: seriesData }]}
+          series={[{ label: title, data: seriesData, fillArea: true }]}
           radar={{ metrics }}
         />
       ) : (
