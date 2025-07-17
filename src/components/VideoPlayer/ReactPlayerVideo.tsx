@@ -12,7 +12,7 @@ export default function ReactPlayerVideo() {
   return (
     <>
       <ReactPlayer
-        src="videos/sample.mp4"
+        src="/videos/sample.mp4"
         playing={playing}
         controls
         width="100%"

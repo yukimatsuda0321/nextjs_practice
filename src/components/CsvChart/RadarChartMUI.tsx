@@ -12,16 +12,18 @@ interface Props {
 }
 
 interface DataPoint {
-  metric: string; // 軸の名前
-  value: number; // データ値
-  max: number; // 最大値
+  metric: string;
+  value: number;
+  max: number;
 }
 
 const RadarChartMUI = ({ file, title }: Props) => {
   const [seriesData, setSeriesData] = useState<number[]>([]);
   const [metrics, setMetrics] = useState<{ name: string; max: number }[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     fetch(`/RadarChart/${file}`)
       .then((res) => res.text())
       .then((text) => {
@@ -39,22 +41,29 @@ const RadarChartMUI = ({ file, title }: Props) => {
 
         setSeriesData(cleaned.map((d) => d.value));
         setMetrics(cleaned.map((d) => ({ name: d.metric, max: d.max })));
+        setLoading(false);
       });
   }, [file]);
 
   return (
-    <>
-      {/* <Paper sx={{ p: 2, mt: 3 }}>
-        <Typography variant="h6" align="center" gutterBottom>
-          {title}
-        </Typography>
+    <Paper sx={{ p: 2, mt: 3 }}>
+      <Typography variant="h6" align="center" gutterBottom>
+        {title}
+      </Typography>
+
+      {/* データが揃ったときのみ表示 */}
+      {seriesData.length > 0 && metrics.length > 0 ? (
         <RadarChart
           height={350}
           series={[{ label: title, data: seriesData }]}
-          radar={{ metrics: metrics }}
+          radar={{ metrics }}
         />
-      </Paper> */}
-    </>
+      ) : (
+        <Typography align="center" variant="body2" color="text.secondary">
+          {loading ? "読み込み中..." : "データが見つかりません"}
+        </Typography>
+      )}
+    </Paper>
   );
 };
 

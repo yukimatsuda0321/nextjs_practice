@@ -27,7 +27,7 @@ function parseCSV(csv: string) {
 
 type Props = {
   title: string;
-  csvPath: string; // 例: "/data.csv"
+  csvPath: string;
 };
 
 export default function RadarChartRechart({ title, csvPath }: Props) {
