@@ -20,7 +20,7 @@ import { getPostById } from "@/lib/post";
 import { notFound } from "next/navigation";
 import { format } from "date-fns"
 import { ja } from "date-fns/locale"
-import { Post } from "@/types/post";
+
 import ReactPlayerVideo from "@/components/VideoPlayer/ReactPlayerVideo";
 
 const csvFiles = Array.from({ length: 20 }, (_, i) => ({
@@ -75,7 +75,7 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
       >
         <Typography variant="h3">解析結果</Typography>
         <Stack>
-          <Typography variant="h6">{post.author.name}</Typography>
+          <Typography variant="h6">{post.author.name}さん</Typography>
           <Typography variant="h6">{format(new Date(post.createdAt), "yyyy/M/d HH:mm:ss", { locale: ja })}</Typography>
         </Stack>
 
@@ -86,7 +86,7 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
             sx={{ marginRight: "auto" }}
           />
         </Box>
-      </Stack>
+      </Stack >
 
       <Stack direction={"row"} width="100%" height="100%">
         <Stack

@@ -11,7 +11,9 @@ export async function getPosts(order: "asc" | "desc" = "asc") {
             }
         },
         orderBy: {
-            createdAt: order
+            author: {
+                name: order
+            }
         }
     })
 }
