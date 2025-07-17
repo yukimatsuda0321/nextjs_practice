@@ -4,6 +4,7 @@ import { Paper, Typography } from "@mui/material";
 import { RadarChart } from "@mui/x-charts";
 import Papa from "papaparse";
 import { useEffect, useState } from "react";
+import React from "react";
 
 interface Props {
   file: string;

@@ -89,13 +89,15 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
 
       <Stack direction={"row"} width="100%" height="100%">
         <Stack
-          width={"55%"}
+          width={"60%"}
           alignItems={"center"}
           sx={{
             backgroundColor: "#c2ed82",
           }}
         >
-          <VideoPlayer ref={videoRef} />
+          <Box width="100%" height="auto">
+            <ReactPlayerVideo />
+          </Box>
         </Stack>
 
         <Stack
@@ -112,7 +114,6 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
               <Typography variant="h6" gutterBottom>
                 レーダーチャート
               </Typography>
-              {/* <RadarChartMUI file="RadarChart.csv" title="チャート情報" /> */}
               <RaderChartRechart
                 title="Student Comparison"
                 csvPath={"RadarChart/RadarChart.csv"}
