@@ -1,8 +1,7 @@
 "use client"
 
-import { useSearchParams, useRouter, usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import DatePicker from "../post/DatePicker"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 import {
   Select,
@@ -27,8 +26,10 @@ export default function RecordHeader() {
   }
 
   const handleSortChange = (value: string) => {
-    setSelectedSort(value);
-    console.log("選択された値:", value);
+    //setSelectedSort(value);
+    const params = new URLSearchParams(searchParams.toString())
+    params.set("sort", order)
+    router.push(`${pathname}?${params.toString()}`)
   };
 
   return (

@@ -1,25 +1,16 @@
 "use client";
 
+import CsvChartMUI from "@/components/CsvChart/CsvChartMUI";
+import RaderChartRechart from "@/components/CsvChart/RadarChartRechart";
 import {
   Box,
-  Grid,
-  Typography,
-  Paper,
   Stack,
-  Button,
   Switch,
+  Typography
 } from "@mui/material";
-import VideoPlayer from "@/components/VideoPlayer/VideoPlayer";
-import CsvChart from "@/components/CsvChart/CsvChart";
-import CsvChartMUI from "@/components/CsvChart/CsvChartMUI";
+import { format } from "date-fns";
+import { ja } from "date-fns/locale";
 import React, { useEffect, useRef, useState } from "react";
-import RadarChartMUI from "@/components/CsvChart/RadarChartMUI";
-import CsvChartMUI1 from "@/components/CsvChart/CsvChartMUI1";
-import RaderChartRechart from "@/components/CsvChart/RadarChartRechart";
-import { getPostById } from "@/lib/post";
-import { notFound } from "next/navigation";
-import { format } from "date-fns"
-import { ja } from "date-fns/locale"
 
 import ReactPlayerVideo from "@/components/VideoPlayer/ReactPlayerVideo";
 
@@ -32,27 +23,27 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [checked, setChecked] = React.useState(true);
 
-  const [post, setPost] = useState<Post | null>(null)
+  const [post, setPost] = useState<Post | null>(null);
 
-  const resolvedParams = React.use(params)
-  const id = resolvedParams.id
+  const resolvedParams = React.use(params);
+  const id = resolvedParams.id;
 
   useEffect(() => {
-    if (!id) return
+    if (!id) return;
     const fetchPost = async () => {
-      const res = await fetch(`/api/post/${id}`)
+      const res = await fetch(`/api/post/${id}`);
       if (res.ok) {
-        const data = await res.json()
-        setPost(data)
+        const data = await res.json();
+        setPost(data);
       } else {
-        console.error('投稿が見つかりません')
+        console.error("投稿が見つかりません");
       }
-    }
-    fetchPost()
-  }, [id])
+    };
+    fetchPost();
+  }, [id]);
 
   if (!post) {
-    return <p>読み込み中...</p>
+    return <p>読み込み中...</p>;
   }
 
   const handleSeek = (time: number) => {
@@ -76,7 +67,11 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
         <Typography variant="h3">解析結果</Typography>
         <Stack>
           <Typography variant="h6">{post.author.name}さん</Typography>
-          <Typography variant="h6">{format(new Date(post.createdAt), "yyyy/M/d HH:mm:ss", { locale: ja })}</Typography>
+          <Typography variant="h6">
+            {format(new Date(post.createdAt), "yyyy/M/d HH:mm:ss", {
+              locale: ja,
+            })}
+          </Typography>
         </Stack>
 
         <Box sx={{ marginRight: "auto" }}>
@@ -86,7 +81,7 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
             sx={{ marginRight: "auto" }}
           />
         </Box>
-      </Stack >
+      </Stack>
 
       <Stack direction={"row"} width="100%" height="100%">
         <Stack
