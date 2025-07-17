@@ -27,6 +27,7 @@ export default function PublicHeader() {
                     </NavigationMenu>
 
                     <div className="flex items-center gap-4 items-strech">
+                        <SearchBox />
                         <AccountCircleIcon className="h-full w-auto" />
                         <div className="font-bold text-xl">Dr. 松田</div>
                     </div>
