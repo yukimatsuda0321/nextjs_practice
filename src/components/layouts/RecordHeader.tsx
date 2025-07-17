@@ -28,7 +28,7 @@ export default function RecordHeader() {
   const handleSortChange = (value: string) => {
     //setSelectedSort(value);
     const params = new URLSearchParams(searchParams.toString())
-    params.set("sort", order)
+    params.set("selectedSort", value)
     router.push(`${pathname}?${params.toString()}`)
   };
 
@@ -54,8 +54,8 @@ export default function RecordHeader() {
               <SelectValue placeholder="並び替え" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="charger">担当者順</SelectItem>
-              <SelectItem value="create-date">撮影日順</SelectItem>
+              <SelectItem value="byCharger">担当者順</SelectItem>
+              <SelectItem value="byDate">撮影日順</SelectItem>
             </SelectContent>
           </Select>
         </div>

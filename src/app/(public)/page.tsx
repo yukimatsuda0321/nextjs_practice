@@ -1,14 +1,14 @@
-import { compareDatePosts, getPosts, searchPosts } from "@/lib/post"
-import PostCard from "@/components/post/PostCard"
-import { Post } from "@/types/post"
+import PostCard from "@/components/post/PostCard";
+import { compareDatePosts, getPosts, searchPosts } from "@/lib/post";
+import { Post } from "@/types/post";
 
-import * as React from 'react';
-import { LineChart } from '@mui/x-charts';
 
 type SearchParams = {
     search?: string
     order?: "asc" | "desc"
     date?: Date
+    selectedSort?: "byCharger" | "byDate"
+
 }
 
 type Props = {
@@ -32,6 +32,7 @@ export default async function PostsPage({ searchParams }: Props) {
     const searchQuery = resolvedParams.search ?? ""
     const comparedDate = resolvedParams.date ? new Date(resolvedParams.date) : null
     const order: "asc" | "desc" = resolvedParams.order === "desc" ? "desc" : "asc"
+    const selectedOrder: "byCharger" | "byDate" = resolvedParams.selectedSort === "byCharger" ? "byCharger" : "byDate"
 
     if (comparedDate) {
         const dateFilteredPosts = await compareDatePosts(comparedDate) as Post[]
@@ -40,7 +41,7 @@ export default async function PostsPage({ searchParams }: Props) {
 
     const posts: Post[] = searchQuery
         ? await searchPosts(searchQuery)
-        : await getPosts(order)
+        : await getPosts(order, selectedOrder)
 
     return renderPostGrid(posts)
 }
