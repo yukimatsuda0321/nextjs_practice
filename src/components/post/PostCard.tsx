@@ -1,15 +1,11 @@
 import { format } from "date-fns";
 import { ja } from "date-fns/locale";
-import Image from "next/image";
 
 import {
   Card,
-  CardAction,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
 import { PostCardProps } from "@/types/post";
 import Link from "next/link";

@@ -41,5 +41,8 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+/src/bk_components
+/src/lib/bk_post.ts
+/src/app/bk
 
 /prisma
