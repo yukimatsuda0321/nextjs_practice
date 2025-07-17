@@ -21,6 +21,7 @@ import { notFound } from "next/navigation";
 import { format } from "date-fns"
 import { ja } from "date-fns/locale"
 import { Post } from "@/types/post";
+import ReactPlayerVideo from "@/components/VideoPlayer/ReactPlayerVideo";
 
 const csvFiles = Array.from({ length: 20 }, (_, i) => ({
   file: "sample1.csv",
