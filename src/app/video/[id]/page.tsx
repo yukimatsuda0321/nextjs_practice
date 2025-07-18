@@ -8,6 +8,7 @@ import { ja } from "date-fns/locale";
 import React, { useEffect, useRef, useState } from "react";
 
 import ReactPlayerVideo from "@/components/VideoPlayer/ReactPlayerVideo";
+import BarChartMUI1 from "@/components/CsvChart/BarChartMUI";
 
 const csvFiles = Array.from({ length: 20 }, (_, i) => ({
   file: "sample1.csv",
@@ -91,9 +92,7 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
             backgroundColor: "#c2ed82",
           }}
         >
-          <Box width="100%" height="auto">
-            <ReactPlayerVideo />
-          </Box>
+          <ReactPlayerVideo />
         </Stack>
 
         <Stack
@@ -106,19 +105,28 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
           }}
         >
           {checked && (
-            <Box sx={{ mt: 2, p: 2, border: "1px solid gray" }}>
-              <Typography variant="h6" gutterBottom>
-                レーダーチャート
-              </Typography>
-              <RadarChartMUI
-                title="患者さんのクモの巣チャート"
-                file={"RadarChart1.csv"}
-              />
-            </Box>
+            <>
+              <Box sx={{ mt: 2, p: 2, border: "1px solid gray" }}>
+                <Typography variant="h6" gutterBottom>
+                  レーダーチャート
+                </Typography>
+                <RadarChartMUI
+                  title="患者さんのクモの巣チャート"
+                  file={"RadarChart1.csv"}
+                />
+              </Box>
+              <Box sx={{ mt: 2, p: 2, border: "1px solid gray" }}>
+                <Typography>バーグラフ　速度など</Typography>
+                <BarChartMUI1
+                  title="患者さんのバーグラフ表示"
+                  file={"Sample2.csv"}
+                />
+              </Box>
+            </>
           )}
 
           {csvFiles.map((csv, index) => (
-            <CsvChartMUI key={index} file={csv.file} title={csv.title} />
+            <CsvChartMUI1 key={index} file={csv.file} title={csv.title} />
           ))}
         </Stack>
       </Stack>

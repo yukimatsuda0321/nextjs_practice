@@ -7,8 +7,7 @@ import { Card, CardContent, Typography, Box } from "@mui/material";
 
 interface Props {
   file: string;
-  title?: string;
-  onSeek?: (time: number) => void;
+  title: string;
 }
 
 interface DataPoint {
@@ -32,46 +31,34 @@ export default function CsvChartMUI1({ file, title }: Props) {
             typeof d.time === "number" && typeof d.value === "number"
         );
         setData(cleaned);
+        console.log(data);
       });
   }, [file]);
 
-  const Yheight = 250;
-
   return (
-    <Card sx={{ maxWidth: 800, mx: "auto", mt: 3 }}>
-      <CardContent>
-        {title && (
-          <Typography variant="h6" gutterBottom>
-            {title}
-          </Typography>
-        )}
-        <Box display="flex" justifyContent="center">
-          <LineChart
-            height={Yheight}
-            width={700}
-            xAxis={[
-              {
-                data: data.map((d) => d.time),
-                label: "Time",
-              },
-            ]}
-            yAxis={[
-              {
-                id: "right",
-                label: "Value",
-              },
-            ]}
-            series={[
-              {
-                data: data.map((d) => d.value),
-                label: "Value",
-                color: "#8884d8",
-                showMark: false, // dot={false} 相当
-              },
-            ]}
-          />
-        </Box>
-      </CardContent>
-    </Card>
+    <Box>
+      <Typography variant="h6">{title}</Typography>
+      <Box display="flex" justifyContent="center">
+        <LineChart
+          height={250}
+          width={700}
+          xAxis={[
+            {
+              data: data.map((d) => d.time),
+              position: "none",
+            },
+          ]}
+          yAxis={[{ position: "right", tickMinStep: 10 }]}
+          series={[
+            {
+              data: data.map((d) => d.value),
+              color: "#8884d8",
+              showMark: false,
+            },
+          ]}
+          grid={{ horizontal: true }}
+        />
+      </Box>
+    </Box>
   );
 }
