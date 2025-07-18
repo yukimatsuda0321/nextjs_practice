@@ -2,9 +2,14 @@
 import { Box, Button, ButtonGroup } from "@mui/material";
 import { useRef, useState } from "react";
 import ReactPlayer from "react-player";
+import { Box, Button, ButtonGroup, IconButton } from "@mui/material";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
+import { hadUnsupportedValue } from "next/dist/build/analysis/get-page-static-info";
+import { tr } from "date-fns/locale";
 
 export default function ReactPlayerVideo() {
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const playerRef = useRef<ReactPlayer>(null);
   const [duration, setDuration] = useState(0);
   const fps = 60;
