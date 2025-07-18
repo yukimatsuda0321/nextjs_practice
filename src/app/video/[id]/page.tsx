@@ -1,16 +1,15 @@
 "use client";
 
-import CsvChartMUI from "@/components/CsvChart/CsvChartMUI";
 import RadarChartMUI from "@/components/CsvChart/RadarChartMUI";
 import { Box, Stack, Switch, Typography } from "@mui/material";
 import { format } from "date-fns";
 import { ja } from "date-fns/locale";
 import React, { useEffect, useRef, useState } from "react";
 
-import ReactPlayerVideo from "@/components/VideoPlayer/ReactPlayerVideo";
-import BarChartMUI1 from "@/components/CsvChart/BarChartMUI";
-import CsvChartMUI1 from "@/components/CsvChart/CsvChartMUI1";
 import BarChartRehart from "@/components/CsvChart/BarChartRecharts";
+import CsvChartMUI1 from "@/components/CsvChart/CsvChartMUI1";
+import ReactPlayerVideo from "@/components/VideoPlayer/ReactPlayerVideo";
+import { Post } from "@/types/post";
 
 const csvFiles = Array.from({ length: 20 }, (_, i) => ({
   file: "sample1.csv",
@@ -114,7 +113,7 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
                 </Typography>
                 <RadarChartMUI
                   title="患者さんのクモの巣チャート"
-                  file={"RadarChart1.csv"}
+                  file={"RadarChart.csv"}
                 />
               </Box>
               <Box sx={{ mt: 2, p: 2, border: "1px solid gray" }}>

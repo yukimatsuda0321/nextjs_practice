@@ -1,11 +1,9 @@
 "use client";
 
-import { Paper, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { RadarChart } from "@mui/x-charts";
-import { Box } from "lucide-react";
 import Papa from "papaparse";
 import { useEffect, useState } from "react";
-import React from "react";
 
 interface Props {
   file: string;
