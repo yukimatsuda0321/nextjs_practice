@@ -2,6 +2,7 @@
 
 import { Paper, Typography } from "@mui/material";
 import { RadarChart } from "@mui/x-charts";
+import { Box } from "lucide-react";
 import Papa from "papaparse";
 import { useEffect, useState } from "react";
 import React from "react";
@@ -46,24 +47,17 @@ const RadarChartMUI = ({ file, title }: Props) => {
   }, [file]);
 
   return (
-    <Paper sx={{ p: 2, mt: 3 }}>
+    <>
       <Typography variant="h6" align="center" gutterBottom>
         {title}
       </Typography>
 
-      {/* データが揃ったときのみ表示 */}
-      {seriesData.length > 0 && metrics.length > 0 ? (
-        <RadarChart
-          height={350}
-          series={[{ label: title, data: seriesData, fillArea: true }]}
-          radar={{ metrics }}
-        />
-      ) : (
-        <Typography align="center" variant="body2" color="text.secondary">
-          {loading ? "読み込み中..." : "データが見つかりません"}
-        </Typography>
-      )}
-    </Paper>
+      <RadarChart
+        height={350}
+        series={[{ label: title, data: seriesData, fillArea: true }]}
+        radar={{ metrics }}
+      />
+    </>
   );
 };
 

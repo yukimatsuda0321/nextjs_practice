@@ -38,10 +38,8 @@ export default function CsvChartMUI1({ file, title }: Props) {
   return (
     <Box>
       <Typography variant="h6">{title}</Typography>
-      <Box display="flex" justifyContent="center">
+      <Box display="flex" justifyContent="center" width={"100%"} height={250}>
         <LineChart
-          height={250}
-          width={700}
           xAxis={[
             {
               data: data.map((d) => d.time),

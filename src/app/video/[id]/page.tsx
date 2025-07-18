@@ -10,6 +10,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactPlayerVideo from "@/components/VideoPlayer/ReactPlayerVideo";
 import BarChartMUI1 from "@/components/CsvChart/BarChartMUI";
 import CsvChartMUI1 from "@/components/CsvChart/CsvChartMUI1";
+import BarChartRehart from "@/components/CsvChart/BarChartRecharts";
 
 const csvFiles = Array.from({ length: 20 }, (_, i) => ({
   file: "sample1.csv",
@@ -118,7 +119,11 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
               </Box>
               <Box sx={{ mt: 2, p: 2, border: "1px solid gray" }}>
                 <Typography>バーグラフ　速度など</Typography>
-                <BarChartMUI1
+                {/* <BarChartMUI1
+                  title="患者さんのバーグラフ表示"
+                  file={"Sample2.csv"}
+                /> */}
+                <BarChartRehart
                   title="患者さんのバーグラフ表示"
                   file={"Sample2.csv"}
                 />
