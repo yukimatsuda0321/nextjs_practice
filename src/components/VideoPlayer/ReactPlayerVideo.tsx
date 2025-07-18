@@ -7,7 +7,7 @@ import PauseIcon from "@mui/icons-material/Pause";
 import { hadUnsupportedValue } from "next/dist/build/analysis/get-page-static-info";
 
 export default function ReactPlayerVideo() {
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(true);
   const playerRef = useRef<ReactPlayer>(null);
   const [duration, setDuration] = useState(0);
   const fps = 60;
@@ -22,16 +22,12 @@ export default function ReactPlayerVideo() {
   };
 
   const stepFrame = (check: number) => {
-    if (playerRef.current && check === 0) {
-      const nextTime = currentTime - 1 / fps;
-      playerRef.current.seekTo(nextTime, "seconds");
-      setCurrentTime(nextTime);
-    }
-    if (playerRef.current && check === 1) {
-      const nextTime = currentTime + 1 / fps;
-      playerRef.current.seekTo(nextTime, "seconds");
-      setCurrentTime(nextTime);
-    }
+    if (!playerRef.current) return;
+
+    const actualTime = playerRef.current.getCurrentTime();
+    const nextTime = check === 0 ? actualTime - 1 / fps : actualTime + 1 / fps;
+
+    playerRef.current.seekTo(nextTime, "seconds");
   };
 
   return (
@@ -52,6 +48,7 @@ export default function ReactPlayerVideo() {
           height="100%"
           onProgress={onProgress}
           progressInterval={50}
+          onSeek={(newTime) => setCurrentTime(newTime)}
           onDuration={(d) => {
             setDuration(d);
           }}

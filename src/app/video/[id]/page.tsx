@@ -9,6 +9,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import ReactPlayerVideo from "@/components/VideoPlayer/ReactPlayerVideo";
 import BarChartMUI1 from "@/components/CsvChart/BarChartMUI";
+import CsvChartMUI1 from "@/components/CsvChart/CsvChartMUI1";
 
 const csvFiles = Array.from({ length: 20 }, (_, i) => ({
   file: "sample1.csv",
