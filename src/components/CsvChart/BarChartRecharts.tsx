@@ -25,7 +25,19 @@ interface DataPoint {
   value: number;
 }
 
-const barTitles = ["歩行速度(cm/s)", "歩幅(cm)", "ケイデンス(歩/分)"];
+const CustomLabel = ({ x, y, width, height, value }: any) => (
+  <text
+    x={x + width / 2}
+    y={y + height / 2}
+    fill="#fff"
+    fontSize={20}
+    textAnchor="middle"
+    alignmentBaseline="middle"
+    fontWeight="bold"
+  >
+    {value}
+  </text>
+);
 
 export default function BarChartRehart({ file, title }: Props) {
   const [data, setData] = useState<DataPoint[]>([]);
@@ -58,12 +70,11 @@ export default function BarChartRehart({ file, title }: Props) {
           <XAxis type="number" />
           <YAxis dataKey="time" type="category" />
           <Tooltip />
-          <Bar dataKey="value" label={{ position: "right" }}>
+          <Bar dataKey="value" label={<CustomLabel />}>
             {data.map((_, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={colors[index % colors.length]}
-                name={barTitles[index % barTitles.length]}
               />
             ))}
           </Bar>
