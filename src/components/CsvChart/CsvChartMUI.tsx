@@ -39,29 +39,13 @@ export default function CsvChartMUI({ file, title }: Props) {
       });
   }, [file]);
 
-  // const handleClick = (e: any) => {
-  //   if (e && e.activePayload && e.activePayload[0]) {
-  //     const clickedTime = e.activePayload[0].payload.time;
-  //     if (onSeek) onSeek(clickedTime);
-  //   }
-  // };
-
   const Yheight = 250;
 
   return (
     <>
       <Box sx={{ height: Yheight, maxWidth: 700, margin: "20px auto" }}>
-        {title && (
-          <Typography variant="h6" gutterBottom>
-            {title}
-          </Typography>
-        )}
-        <LineChart
-          width={800}
-          height={Yheight - 50}
-          data={data}
-          // onClick={handleClick}
-        >
+        <Typography variant="h6">{title}</Typography>
+        <LineChart width={800} height={Yheight - 50} data={data}>
           <CartesianGrid stroke="#ccc" vertical={false} />
           <XAxis dataKey="time" />
           <YAxis orientation="right" />
@@ -73,7 +57,7 @@ export default function CsvChartMUI({ file, title }: Props) {
             strokeWidth={3}
             dot={false}
           />
-        </LineChart>{" "}
+        </LineChart>
       </Box>
     </>
   );
